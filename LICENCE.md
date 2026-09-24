@@ -1,6 +1,6 @@
 # Licence – Sušenkov
 
-Copyright (c) 2026 Štěpán Prokop, Jiří Lhota, Maxmilián Zálešák
+Copyright (c) 2026 Štěpán Prokop, Jiří Lhota, Maxmilián Zálešák.
 Všechna práva vyhrazena.
 
 ---
