@@ -112,12 +112,9 @@ Plánovaný rozsah:
 
 ---
 
-# Vývoj
+# Stažení
 
 ## Požadavky
-
-Pro vývoj projektu potřebujete:
-
 * [Unity](https://unity.com/)
 * Git
 * Git LFS, pokud projekt obsahuje větší binární soubory
@@ -139,9 +136,7 @@ Pro vývoj projektu potřebujete:
    ```
 
 3. Otevřete projekt v **Unity Hub**.
-
 4. Vyberte projektovou složku a otevřete ji v odpovídající verzi Unity.
-
 5. Po načtení projektu spusťte hlavní scénu a projekt můžete začít prozkoumávat.
 
 ## Struktura projektu
