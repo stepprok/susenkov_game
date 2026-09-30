@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 363ea15d8df235146a3477160113348f
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 328170
+  packageName: Cartoon City Free
+  packageVersion: 1.0
+  assetPath: Assets/ithappy/Cartoon_City_Free/Render_Pipeline_Convert/Render_Pipeline_Instructions_Unity_6.txt
+  uploadId: 776825
