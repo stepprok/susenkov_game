@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyPeasy Controller | Documentation</title>
+    <style>
+        :root {
+            --sidebar-bg: #f5f5f5;
+            --content-bg: #ffffff;
+            --text-color: #333333;
+            --heading-color: #101010;
+            --link-color: #0ea5e9;
+            /* Sky blue to match previous aesthetic slightly but keep style */
+            --code-bg: #f8f8f8;
+            --code-text: #c7254e;
+            --border-color: #e0e0e0;
+            --active-link-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --th-bg: #f9f9f9;
+        }
+
+        [data-theme="dark"] {
+            --sidebar-bg: #1e1e1e;
+            --content-bg: #0f172a;
+            /* Slate 900 */
+            --text-color: #cbd5e1;
+            --heading-color: #f1f5f9;
+            --link-color: #38bdf8;
+            --code-bg: #1e293b;
+            --code-text: #f472b6;
+            --border-color: #334155;
+            --active-link-bg: #334155;
+            --card-bg: #1e293b;
+            --th-bg: #1e293b;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--content-bg) 0%, var(--sidebar-bg) 100%);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ::selection {
+            background: var(--link-color);
+            color: white;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #202020 0%, var(--sidebar-bg) 100%);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            padding: 0;
+            color: white;
+            background: none;
+            -webkit-text-fill-color: white;
+        }
+
+        .sidebar-header span {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .nav-scroll {
+            overflow-y: auto;
+            padding: 10px 0;
+            flex: 1;
+        }
+
+        .nav-group {
+            padding: 15px 20px 5px 20px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 8px 20px 8px 30px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--link-color);
+            transform: scaleY(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover {
+            background-color: var(--active-link-bg);
+            padding-left: 35px;
+            box-shadow: inset 3px 0 0 var(--link-color);
+        }
+
+        .nav-item.active {
+            border-left-color: var(--link-color);
+            background-color: var(--active-link-bg);
+            font-weight: 600;
+            box-shadow: inset 3px 0 0 var(--link-color), 0 2px 8px rgba(56, 189, 248, 0.2);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 100px;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 40px 100px 40px;
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+                filter: blur(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 32px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            color: var(--heading-color);
+            background: linear-gradient(135deg, var(--heading-color) 0%, var(--link-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: var(--heading-color);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(180deg, var(--link-color), transparent);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            color: var(--link-color);
+            transition: all 0.3s;
+        }
+
+        h3:hover {
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        p,
+        li {
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            background-color: var(--code-bg);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .code-keyword {
+            color: #c678dd;
+        }
+
+        .code-type {
+            color: #e5c07b;
+        }
+
+        .code-function {
+            color: #61afef;
+        }
+
+        .code-string {
+            color: #98c379;
+        }
+
+        .code-comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            color: var(--text-color);
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--link-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        .copy-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .node-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .node-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.15);
+            border-color: var(--link-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--th-bg);
+            width: 30%;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-color);
+        }
+
+        .param-name {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+        }
+
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+            background: var(--code-bg);
+            animation: subtlePulse 2s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+
+        .alert:hover {
+            transform: translateX(5px);
+        }
+
+        @keyframes subtlePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+            }
+        }
+
+        .alert-info {
+            border-color: #38bdf8;
+        }
+
+        .alert-warn {
+            border-color: #facc15;
+        }
+
+        .alert-tip {
+            border-color: #4ade80;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(180deg) scale(1.2);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Steps Style */
+        .step-number {
+            display: inline-flex;
+            width: 24px;
+            height: 24px;
+            background: var(--link-color);
+            color: white;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                height: 100%;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .page {
+                padding: 80px 20px 80px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div>
+                <h1>Easy Peasy First Person Controller</h1>
+                <span>Documentation v1.0</span>
+            </div>
+            <button class="theme-btn" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+        </div>
+
+        <div class="nav-scroll">
+            <div class="nav-group">Main</div>
+            <a class="nav-item active" onclick="openPage('page-intro')">Introduction</a>
+            <a class="nav-item" onclick="openPage('page-architecture')">Architecture</a>
+
+            <div class="nav-group">Guides</div>
+            <a class="nav-item" onclick="openPage('page-addstate')">How to Add a State</a>
+
+            <div class="nav-group">Reference</div>
+            <a class="nav-item" onclick="openPage('page-api')">Script Reference</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper" id="contentWrapper">
+
+        <!-- INTRO -->
+        <div id="page-intro" class="page active">
+            <h1>👋 Introduction</h1>
+            <p>Welcome to the <strong>EasyPeasy First Person Controller</strong>! A clean, modular, and extensible
+                controller system built for Unity using the <strong>State Pattern</strong>.</p>
+
+            <p>Unlike traditional "spaghetti" controllers where all logic (jumping, sliding, crouching) is stuffed into
+                a massive <code>Update()</code> loop, this controller separates every action into its own distinct
+                class.</p>
+
+            <h2>Why use this?</h2>
+            <div class="node-card">
+                <ul>
+                    <li><strong>🧠 Clean Architecture:</strong> Logic is separated into specific State classes.</li>
+                    <li><strong>🧩 Modular:</strong> Easily add or remove capabilities without breaking the whole
+                        controller.</li>
+                    <li><strong>✨ Polish:</strong> Built-in support for camera bobbing, tilts, and FOV changes.</li>
+                    <li><strong>🌊 Physics:</strong> Includes sliding, crouching, and even swimming states out of the
+                        box.</li>
+                </ul>
+            </div>
+
+            <h2>Key Features</h2>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td class="param-name">State Machine</td>
+                    <td>Robust hierarchical state machine handling transitions.</td>
+                </tr>
+                <tr>
+                    <td class="param-name">Movement</td>
+                    <td>Walk, Sprint, Crouch, Jump, Slide, Swim.</td>
+                </tr>
+                <tr>
+                    <td class="param-name">Camera</td>
+                    <td>Head bob, Strafe Tilt, Dynamic FOV zoom.</td>
+                </tr>
+                <tr>
+                    <td class="param-name">Input</td>
+                    <td>Decoupled input manager for easy switching to new Input System.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ARCHITECTURE -->
+        <div id="page-architecture" class="page">
+            <h1>🏗️ Architecture</h1>
+            <p>Understanding the core components will help you extend the controller effectively.</p>
+
+            <h2>Core Components</h2>
+            <div class="node-card">
+                <h3>1. FirstPersonController (The Context)</h3>
+                <p>This is the main Monobehaviour script attached to your player. It holds:</p>
+                <ul>
+                    <li>References (Camera, CharacterController)</li>
+                    <li>Configuration (Walk Speed, Jump Height)</li>
+                    <li>Shared Data (IsGrounded, CurrentVelocity)</li>
+                </ul>
+                <p>It <strong>delegates</strong> logic to the active State.</p>
+            </div>
+
+            <div class="node-card">
+                <h3>2. PlayerBaseState</h3>
+                <p>The abstract base class for all states. It enforces the structure:</p>
+                <ul>
+                    <li><code>EnterState()</code> - Called when state starts</li>
+                    <li><code>UpdateState()</code> - Called every frame</li>
+                    <li><code>ExitState()</code> - Called when leaving state</li>
+                    <li><code>CheckSwitchStates()</code> - Checks if we should transition</li>
+                </ul>
+            </div>
+
+            <div class="node-card">
+                <h3>3. PlayerStateFactory</h3>
+                <p>A central hub that creates and holds instances of your states. This prevents garbage collection
+                    spikes by reusing state instances.</p>
+            </div>
+        </div>
+
+        <!-- ADD STATE GUIDE -->
+        <div id="page-addstate" class="page">
+            <h1>➕ How to Add a New State</h1>
+            <p>Want to add a <strong>Dash</strong>, <strong>Wall Run</strong>, or <strong>Jetpack</strong> ability?
+                Follow this guide.</p>
+
+            <h2>Step 1: Create the Source File</h2>
+            <p><span class="step-number">1</span> Create a new script named <code>PlayerDashState.cs</code> inheriting
+                from <code>PlayerBaseState</code>.</p>
+
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code><span class="code-keyword">using</span> UnityEngine;
+<span class="code-keyword">namespace</span> EasyPeasyFirstPersonController 
+{
+    <span class="code-keyword">public class</span> <span class="code-type">PlayerDashState</span> : <span class="code-type">PlayerBaseState</span>
+    {
+        <span class="code-keyword">public</span> <span class="code-type">PlayerDashState</span>(<span class="code-type">FirstPersonController</span> currentContext, <span class="code-type">PlayerStateFactory</span> playerStateFactory)
+            : <span class="code-keyword">base</span>(currentContext, playerStateFactory) { }
+
+        <span class="code-keyword">public override void</span> <span class="code-function">EnterState</span>() 
+        {
+            <span class="code-comment">// Start Dash Effect</span>
+            ctx.fovChangeSpeed = 20f;
+            ctx.targetFov = 90f;
+            Debug.Log(<span class="code-string">"DASH START!"</span>);
+        }
+
+        <span class="code-keyword">public override void</span> <span class="code-function">UpdateState</span>() 
+        {
+            CheckSwitchStates();
+            <span class="code-comment">// Dash physics logic...</span>
+            ctx.characterController.Move(ctx.transform.forward * 20f * Time.deltaTime);
+        }
+
+        <span class="code-keyword">public override void</span> <span class="code-function">ExitState</span>() 
+        {
+             <span class="code-comment">// Reset FOV</span>
+             ctx.targetFov = ctx.normalFov;
+        }
+
+        <span class="code-keyword">public override void</span> <span class="code-function">CheckSwitchStates</span>() 
+        {
+            <span class="code-comment">// Return to ground after time</span>
+            <span class="code-keyword">if</span> (dashTimer > 0.5f) 
+            {
+                SwitchState(factory.Grounded());
+            }
+        }
+    }
+}</code></pre>
+
+            <h2>Step 2: Register in Factory</h2>
+            <p><span class="step-number">2</span> Open <code>PlayerStateFactory.cs</code> and add a helper method.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code><span class="code-keyword">public class</span> <span class="code-type">PlayerStateFactory</span>
+{
+    <span class="code-comment">// ... existing states ...</span>
+
+    <span class="code-comment">// Add this line:</span>
+    <span class="code-keyword">public</span> <span class="code-type">PlayerBaseState</span> <span class="code-function">Dash</span>() => <span class="code-keyword">new</span> <span class="code-type">PlayerDashState</span>(context, <span class="code-keyword">this</span>);
+}</code></pre>
+
+            <h2>Step 3: Define Transitions</h2>
+            <p><span class="step-number">3</span> Go to an existing state (like <code>PlayerGroundedState.cs</code>) and
+                add the condition to switch to your new state.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code><span class="code-keyword">public override void</span> <span class="code-function">CheckSwitchStates</span>()
+{
+    <span class="code-keyword">if</span> (ctx.input.jump && ctx.isGrounded)
+    {
+        SwitchState(factory.Jumping());
+    }
+    <span class="code-comment">// ADD THIS:</span>
+    <span class="code-keyword">else if</span> (Input.GetKeyDown(KeyCode.E)) 
+    {
+        SwitchState(factory.Dash());
+    }
+}</code></pre>
+
+            <div class="alert alert-tip">
+                <strong>💡 Quick Tip:</strong> Always make sure to define the <strong>Exit Condition</strong> in your
+                new state, otherwise the player will be stuck dashing forever!
+            </div>
+        </div>
+
+        <!-- API REFERENCE -->
+        <div id="page-api" class="page">
+            <h1>📚 Script Reference</h1>
+
+            <h2>Context Variables (ctx)</h2>
+            <p>These variables are available in every State via the <code>ctx</code> variable.</p>
+
+            <div class="node-card">
+                <table>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">characterController</td>
+                        <td><span class="code-type">CharacterController</span></td>
+                        <td>Reference to the Unity component.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">input</td>
+                        <td><span class="code-type">InputManagerOld</span></td>
+                        <td>Access inputs like <code>input.moveInput</code> or <code>input.jump</code>.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">isGrounded</td>
+                        <td><span class="code-type">bool</span></td>
+                        <td>Updated every frame. True if standing on ground.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">moveDirection</td>
+                        <td><span class="code-type">Vector3</span></td>
+                        <td>Current movement vector applied to the controller.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">targetFov</td>
+                        <td><span class="code-type">float</span></td>
+                        <td>Set this to smoothly interpolate the camera FOV.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Input Manager</h2>
+            <p>Basic inputs available in <code>InputManagerOld</code>.</p>
+            <div class="node-card">
+                <table>
+                    <tr>
+                        <th>Input</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">moveInput</td>
+                        <td>Vector2 (WASD)</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">lookInput</td>
+                        <td>Vector2 (Mouse Delta)</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">jump</td>
+                        <td>float / bool</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">sprint</td>
+                        <td>bool</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">crouch</td>
+                        <td>bool</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            // Remove active class from sidebar items
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            // Set active sidebar item
+            const clickedBtn = Array.from(document.querySelectorAll('.nav-item')).find(item => item.getAttribute('onclick').includes(pageId));
+            if (clickedBtn) clickedBtn.classList.add('active');
+
+            // Scroll to top
+            document.getElementById('contentWrapper').scrollTop = 0;
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('epf_theme', newTheme);
+        }
+
+        function copyCode(button) {
+            const pre = button.parentElement;
+            const code = pre.querySelector('code');
+            const text = code.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.backgroundColor = '#22c55e';
+
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.innerText = 'Failed';
+                setTimeout(() => {
+                    button.innerText = 'Copy';
+                }, 2000);
+            });
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem('epf_theme') === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+            }
+        };
+    </script>
+</body>
+
+</html>

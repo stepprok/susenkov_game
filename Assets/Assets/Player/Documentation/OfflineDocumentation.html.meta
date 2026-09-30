@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 21beac325fd52914e98828dc93e542ce
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317073
+  packageName: Easy Peasy First Person Controller
+  packageVersion: 1.3
+  assetPath: Assets/EasyPeasyFirstPersonController/Documentation/OfflineDocumentation.html
+  uploadId: 978510
