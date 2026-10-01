@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 801749713056f8440a155203e8259c6e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 274127
+  packageName: 3D Low Poly Tools, Weapons & Containers
+  packageVersion: 1.0
+  assetPath: Assets/WeaponsAndPropsAssetPack_NAS/Scripts/Breakable.cs
+  uploadId: 647766
