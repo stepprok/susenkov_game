@@ -30,6 +30,12 @@ public class ItemPickup : MonoBehaviour
                 bool added = InventoryManager.Instance.AddItem(itemName);
                 if (added)
                 {
+                    // Spustí déšť sušenek kolem hráče po sebrání první sušenky
+                    if (CookieSpawner.Instance != null)
+                    {
+                        CookieSpawner.Instance.TriggerCookieRain(playerTransform.position);
+                    }
+
                     Destroy(gameObject); // Odstraní sušenku ze scény
                 }
             }
