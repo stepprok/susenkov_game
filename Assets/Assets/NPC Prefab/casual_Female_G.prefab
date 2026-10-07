@@ -997,7 +997,8 @@ GameObject:
   - component: {fileID: 8599688958399035242}
   - component: {fileID: 3145702252835374492}
   - component: {fileID: 8310525427222778303}
-  - component: {fileID: 5186185234248802424}
+  - component: {fileID: 5703136041308408058}
+  - component: {fileID: 1530333048457975623}
   m_Layer: 0
   m_Name: casual_Female_G
   m_TagString: Untagged
@@ -1081,7 +1082,29 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &5186185234248802424
+--- !u!195 &5703136041308408058
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134071268373548150}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1530333048457975623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1090,18 +1113,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8134071268373548150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11a2af5b59bfd174ebbdcc546d3f9e3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d7ababa22d0ac644a28c81caed63c83, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCTrader
-  interactDistance: 3.5
-  possibleItems:
-  - rewardName: "Golfov\xE1 h\u016Fl"
-    minCookies: 2
-    maxCookies: 10
-  - rewardName: Katana
-    minCookies: 18
-    maxCookies: 22
-  numberOfOffers: 3
+  m_EditorClassIdentifier: Assembly-CSharp::NPCWander
+  wanderRadius: 15
+  wanderTimer: 4
 --- !u!1 &8607134119469314673
 GameObject:
   m_ObjectHideFlags: 0
