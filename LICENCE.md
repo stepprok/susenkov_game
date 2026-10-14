@@ -11,7 +11,7 @@ Tento software, včetně zdrojového kódu, herních mechanik, grafiky, modelů,
 
 Zdrojový kód projektu je možné **prohlížet, studovat a používat pro vzdělávací účely**.
 
-**Upravovat zdrojový kód projektu jsou oprávněni pouze učitelé Obchodní akademie Uherské Hradiště (OAUH).**
+**Upravovat zdrojový kód projektu jsou oprávněni pouze učitelé Obchodní akademie Uherské Hradiště (OAUH) a autoři.**
 
 Toto oprávnění se vztahuje pouze na úpravy prováděné pro výukové, kontrolní nebo vývojové účely v rámci školy. Neuděluje právo projekt dále prodávat, vydávat nebo redistribuovat.
 
