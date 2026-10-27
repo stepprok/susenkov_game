@@ -20,6 +20,15 @@ public class UpgradeManager : MonoBehaviour
     private bool isUpgradeMenuOpen = false;
     private int selectedIndex = 0;
 
+    // --- NOVÉ: pro UpgradeUI ---
+    /// <summary>Kolik vylepšení batohu už hráč koupil.</summary>
+    public int InventoryUpgradeLevel => inventoryUpgradeLevel;
+    /// <summary>Vyvolá se po úspěšném nákupu.</summary>
+    public event System.Action OnUpgradePurchased;
+    /// <summary>Vyvolá se, když hráč nemá dost peněz.</summary>
+    public event System.Action OnPurchaseFailed;
+    // ---------------------------
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -91,27 +100,33 @@ public class UpgradeManager : MonoBehaviour
         return baseInventoryCost * Mathf.Pow(costMultiplier, inventoryUpgradeLevel);
     }
 
-    private void BuyInventoryUpgrade()
+    // ZMĚNA: nyní public, aby šlo koupit i kliknutím na tlačítko v UI
+    public void BuyInventoryUpgrade()
     {
         if (InventoryManager.Instance == null) return;
 
         float currentCost = GetCurrentUpgradeCost();
 
-        // Zkontroluje a odečte peníze
         if (InventoryManager.Instance.SpendMoney(currentCost))
         {
-            // Zvýší kapacitu batohu o 20
             InventoryManager.Instance.capacity += slotsPerUpgrade;
             inventoryUpgradeLevel++;
 
-            Debug.Log($"Vylepšeno! Nová kapacita: {InventoryManager.Instance.capacity}, Další úroveň stojí: {GetCurrentUpgradeCost():F2} $");
+            // --- TADY PŘIDÁME AKTUALIZACI LEVELU ---
+            if (LevelManager.Instance != null)
+            {
+                LevelManager.Instance.AddUpgradeProgress();
+            }
+            // ----------------------------------------
+
+            Debug.Log($"Vylepšeno! Nová kapacita: {InventoryManager.Instance.capacity}");
 
             InventoryManager.Instance.UpdateUI();
-            UpdateUI();
+            OnUpgradePurchased?.Invoke();
         }
         else
         {
-            Debug.Log($"Nemáš dostatek peněz! Potřebuješ {currentCost:F2} $.");
+            OnPurchaseFailed?.Invoke();
         }
     }
 

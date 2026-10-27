@@ -999,6 +999,7 @@ GameObject:
   - component: {fileID: 8310525427222778303}
   - component: {fileID: 5703136041308408058}
   - component: {fileID: 1530333048457975623}
+  - component: {fileID: 548100389992356458}
   m_Layer: 0
   m_Name: casual_Female_G
   m_TagString: Untagged
@@ -1116,8 +1117,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7ababa22d0ac644a28c81caed63c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCWander
+  minWalkTime: 3
+  maxWalkTime: 8
+  minWaitTime: 2
+  maxWaitTime: 6
   wanderRadius: 15
-  wanderTimer: 4
+--- !u!114 &548100389992356458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134071268373548150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a2af5b59bfd174ebbdcc546d3f9e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCTrader
+  interactDistance: 3.5
+  possibleItems: []
+  numberOfOffers: 3
 --- !u!1 &8607134119469314673
 GameObject:
   m_ObjectHideFlags: 0

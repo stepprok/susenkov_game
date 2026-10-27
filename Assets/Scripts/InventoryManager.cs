@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.iKey.wasPressedThisFrame)
         {
             ToggleInventory();
         }

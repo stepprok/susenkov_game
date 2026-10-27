@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
-public struct ItemSellPrice
+public struct StallItemPrice
 {
-    public string itemName;  // Název předmětu
-    public float sellPrice;  // Výkupní cena v $
+    public string itemName;
+    public float sellPrice;
 }
 
 public class StallManager : MonoBehaviour
@@ -18,18 +18,8 @@ public class StallManager : MonoBehaviour
     public GameObject stallUI;
     public TextMeshProUGUI stallText;
 
-    [Header("Ceník výkupu")]
-    public List<ItemSellPrice> priceList = new List<ItemSellPrice>()
-    {
-        new ItemSellPrice { itemName = "Cookies", sellPrice = 0.001f },
-        new ItemSellPrice { itemName = "Golf Club", sellPrice = 12.00f },
-        new ItemSellPrice { itemName = "Katana", sellPrice = 25.00f },
-        new ItemSellPrice { itemName = "Rough Knife", sellPrice = 2.50f },
-        new ItemSellPrice { itemName = "Metal Axe", sellPrice = 15.00f },
-        new ItemSellPrice { itemName = "Magic Wand", sellPrice = 30.00f }
-    };
-
-    public float defaultUnknownItemPrice = 1.00f; // Cena pro neuvedené předměty
+    [Header("Ceník ve stánku (Automaticky se naplní, když je prázdný)")]
+    public List<StallItemPrice> priceList = new List<StallItemPrice>();
 
     private bool isStallOpen = false;
     private int selectedIndex = 0;
@@ -43,39 +33,99 @@ public class StallManager : MonoBehaviour
     private void Start()
     {
         if (stallUI != null) stallUI.SetActive(false);
+
+        // Pokud je ceník prázdný, automaticky do něj nahraje všechny předměty z fotek
+        if (priceList.Count == 0)
+        {
+            InitializeDefaultPrices();
+        }
+    }
+
+    private void InitializeDefaultPrices()
+    {
+        // Měna
+        priceList.Add(new StallItemPrice { itemName = "Cookies", sellPrice = 0.001f });
+
+        // Survival Tools
+        priceList.Add(new StallItemPrice { itemName = "RoughAxe", sellPrice = 2.0f });
+        priceList.Add(new StallItemPrice { itemName = "RoughHammer", sellPrice = 2.0f });
+        priceList.Add(new StallItemPrice { itemName = "RoughHoe", sellPrice = 1.5f });
+        priceList.Add(new StallItemPrice { itemName = "RoughKnife", sellPrice = 2.0f });
+        priceList.Add(new StallItemPrice { itemName = "RoughPickaxe", sellPrice = 2.5f });
+        priceList.Add(new StallItemPrice { itemName = "RoughShovel", sellPrice = 2.0f });
+        priceList.Add(new StallItemPrice { itemName = "RoughSpear", sellPrice = 2.5f });
+
+        // Modern Tools & Weapons (Nože, Katany, Pálky, Klubu)
+        priceList.Add(new StallItemPrice { itemName = "MetalKnife", sellPrice = 4.0f });
+        priceList.Add(new StallItemPrice { itemName = "MetalPickaxe", sellPrice = 5.0f });
+        priceList.Add(new StallItemPrice { itemName = "MetalAxe", sellPrice = 5.0f });
+        priceList.Add(new StallItemPrice { itemName = "MetalSpear", sellPrice = 5.5f });
+        priceList.Add(new StallItemPrice { itemName = "MetalShovel", sellPrice = 4.5f });
+        priceList.Add(new StallItemPrice { itemName = "MetalHoe", sellPrice = 4.0f });
+        priceList.Add(new StallItemPrice { itemName = "MetalHammer", sellPrice = 5.0f });
+        priceList.Add(new StallItemPrice { itemName = "ClaveHammer", sellPrice = 6.0f });
+        priceList.Add(new StallItemPrice { itemName = "Wooden", sellPrice = 4.0f }); // Wooden Baseball Bats
+        priceList.Add(new StallItemPrice { itemName = "MetalBat", sellPrice = 6.0f });
+        priceList.Add(new StallItemPrice { itemName = "GolfBat", sellPrice = 12.0f });
+        priceList.Add(new StallItemPrice { itemName = "GolfClub", sellPrice = 12.0f });
+        priceList.Add(new StallItemPrice { itemName = "Katana", sellPrice = 15.0f });
+        priceList.Add(new StallItemPrice { itemName = "BarnFork", sellPrice = 5.0f });
+
+        // Magical Tools
+        priceList.Add(new StallItemPrice { itemName = "Scythe", sellPrice = 20.0f });
+        priceList.Add(new StallItemPrice { itemName = "Staff", sellPrice = 22.0f });
+        priceList.Add(new StallItemPrice { itemName = "Wand", sellPrice = 18.0f });
+
+        // Containers & Breakable Objects
+        priceList.Add(new StallItemPrice { itemName = "Chest", sellPrice = 8.0f });
+        priceList.Add(new StallItemPrice { itemName = "Bag", sellPrice = 3.0f });
+        priceList.Add(new StallItemPrice { itemName = "Barrel", sellPrice = 4.0f });
+        priceList.Add(new StallItemPrice { itemName = "Bowl", sellPrice = 1.0f });
+        priceList.Add(new StallItemPrice { itemName = "Plate", sellPrice = 1.0f });
+        priceList.Add(new StallItemPrice { itemName = "ShallowPlate", sellPrice = 1.0f });
+        priceList.Add(new StallItemPrice { itemName = "SimpleCup", sellPrice = 1.5f });
+        priceList.Add(new StallItemPrice { itemName = "SimpleMug", sellPrice = 1.5f });
+        priceList.Add(new StallItemPrice { itemName = "Vase", sellPrice = 3.0f });
+
+        // Lamps & Instruments
+        priceList.Add(new StallItemPrice { itemName = "CeilingLamp", sellPrice = 5.0f });
+        priceList.Add(new StallItemPrice { itemName = "WallLamp", sellPrice = 4.0f });
+        priceList.Add(new StallItemPrice { itemName = "Steampunk", sellPrice = 6.0f });
+        priceList.Add(new StallItemPrice { itemName = "Flute", sellPrice = 7.0f });
+        priceList.Add(new StallItemPrice { itemName = "Guitar", sellPrice = 10.0f });
+        priceList.Add(new StallItemPrice { itemName = "PanFlute", sellPrice = 8.0f });
     }
 
     private void Update()
     {
         if (!isStallOpen) return;
 
-        // Zavření stánku klávesou ESC nebo E
         if (Keyboard.current != null && (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.eKey.wasPressedThisFrame))
         {
             CloseStall();
             return;
         }
 
-        if (InventoryManager.Instance == null || InventoryManager.Instance.items.Count == 0) return;
-
+        if (InventoryManager.Instance == null) return;
         List<string> playerItems = InventoryManager.Instance.items;
 
-        // Pohyb šipkami v okně prodeje
-        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        if (playerItems.Count > 0)
         {
-            selectedIndex = (selectedIndex + 1) % playerItems.Count;
-            UpdateStallUI();
-        }
-        else if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        {
-            selectedIndex = (selectedIndex - 1 + playerItems.Count) % playerItems.Count;
-            UpdateStallUI();
-        }
+            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            {
+                selectedIndex = (selectedIndex + 1) % playerItems.Count;
+                UpdateStallUI();
+            }
+            else if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+            {
+                selectedIndex = (selectedIndex - 1 + playerItems.Count) % playerItems.Count;
+                UpdateStallUI();
+            }
 
-        // Prodej předmětu klávesou Enter
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            SellSelectedItem();
+            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                SellSelectedItem(selectedIndex);
+            }
         }
     }
 
@@ -83,7 +133,6 @@ public class StallManager : MonoBehaviour
     {
         isStallOpen = true;
         selectedIndex = 0;
-
         if (stallUI != null) stallUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
@@ -95,38 +144,45 @@ public class StallManager : MonoBehaviour
     public void CloseStall()
     {
         isStallOpen = false;
-
         if (stallUI != null) stallUI.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    private float GetPriceForItem(string itemName)
+    private float GetItemPrice(string itemName)
     {
-        ItemSellPrice match = priceList.Find(p => p.itemName == itemName);
-        return match.itemName != null ? match.sellPrice : defaultUnknownItemPrice;
+        foreach (var p in priceList)
+        {
+            // Pokud název v inventáři obsahuje klíčové slovo (např. GolfBatBlue obsahuje GolfBat)
+            if (itemName.Contains(p.itemName))
+            {
+                return p.sellPrice;
+            }
+        }
+        return 1.0f; // Výchozí cena, pokud by předmět chyběl
     }
 
-    private void SellSelectedItem()
+    public void SellSelectedItem(int index)
     {
-        if (InventoryManager.Instance == null || InventoryManager.Instance.items.Count == 0) return;
+        if (InventoryManager.Instance == null) return;
+        List<string> playerItems = InventoryManager.Instance.items;
 
-        string itemToSell = InventoryManager.Instance.items[selectedIndex];
-        float price = GetPriceForItem(itemToSell);
+        if (index < 0 || index >= playerItems.Count) return;
 
-        // Odebere 1 kus z inventáře a přičte peníze
-        bool removed = InventoryManager.Instance.RemoveItems(itemToSell, 1);
-        if (removed)
+        string itemName = playerItems[index];
+        float price = GetItemPrice(itemName);
+
+        bool success = InventoryManager.Instance.RemoveItems(itemName, 1);
+        if (success)
         {
             InventoryManager.Instance.AddMoney(price);
-            Debug.Log($"Prodaný předmět {itemToSell} za {price:F3} $");
+            Debug.Log($"Prodáno: {itemName} za {price} $!");
 
-            if (selectedIndex >= InventoryManager.Instance.items.Count && InventoryManager.Instance.items.Count > 0)
+            if (selectedIndex >= playerItems.Count && playerItems.Count > 0)
             {
-                selectedIndex = InventoryManager.Instance.items.Count - 1;
+                selectedIndex = playerItems.Count - 1;
             }
-
             UpdateStallUI();
         }
     }
@@ -135,32 +191,35 @@ public class StallManager : MonoBehaviour
     {
         if (stallText == null) return;
 
-        if (InventoryManager.Instance == null || InventoryManager.Instance.items.Count == 0)
+        if (InventoryManager.Instance == null) return;
+        List<string> playerItems = InventoryManager.Instance.items;
+
+        float playerMoney = InventoryManager.Instance.money;
+        stallText.text = $"<b>--- STÁNEK (VÝKUP) ---</b>\nTvoje peníze: <b>{playerMoney:F3} $</b>\n\n";
+
+        if (playerItems.Count == 0)
         {
-            stallText.text = "<b>--- VÝKUPNÍ STÁNEK ---</b>\n\nNemáš v inventáři nic k prodeji.";
+            stallText.text += "Nemáš v inventáři žádné věci na prodej.";
             return;
         }
 
-        List<string> items = InventoryManager.Instance.items;
-        float currentMoney = InventoryManager.Instance.money;
+        stallText.text += "<b>Vyber věc k prodeji:</b>\n";
 
-        stallText.text = $"<b>--- VÝKUPNÍ STÁNEK ---</b>\nPeníze: <b>{currentMoney:F3} $</b>\n\n<b>Vyber předmět k prodeji:</b>\n";
-
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < playerItems.Count; i++)
         {
-            string itemName = items[i];
-            float price = GetPriceForItem(itemName);
+            string itemName = playerItems[i];
+            float price = GetItemPrice(itemName);
 
             if (i == selectedIndex)
             {
-                stallText.text += $"<color=yellow>> <b>{itemName}</b> | Výkup: <color=#00FF00>+{price:F3} $</color> <</color>\n";
+                stallText.text += $"<color=yellow>> <b>{itemName}</b> </color> | Výkup: <color=#00FF00>{price:F3} $</color>\n";
             }
             else
             {
-                stallText.text += $"- {itemName} | Výkup: +{price:F3} $\n";
+                stallText.text += $"- {itemName} | Výkup: <color=#00FF00>{price:F3} $</color>\n";
             }
         }
 
-        stallText.text += "\n<size=80%><i>[ENTER] Prodat předmět  |  [ESC / E] Zavřít</i></size>";
+        stallText.text += "\n<size=80%><i>[ENTER] Prodat  |  [ESC / E] Zavřít</i></size>";
     }
 }

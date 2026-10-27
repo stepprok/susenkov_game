@@ -7,7 +7,7 @@ public class CookieSpawner : MonoBehaviour
 
     [Header("Nastavení sušenkové exploze")]
     public GameObject cookiePrefab;
-    public int cookieCount = 10000;    // Počet sušenek
+    public int cookieCount = 500;    // Počet sušenek
     public int spawnPerFrame = 150;     // Kolik sušenek se vytvoří za 1 snímek
     public float spawnRadius = 15.0f;   // Zvětšený okruh, aby se neshlukly na jedno místo
     public float spawnHeight = 12.0f;
