@@ -1,0 +1,1538 @@
+{
+ "version": 3,
+ "tileSize": 600,
+ "tiles": [
+  {
+   "x": 0,
+   "z": 0,
+   "ix": 0,
+   "iz": 0
+  }
+ ],
+ "objects": [
+  {
+   "prefab": "Fountain",
+   "x": -54.61,
+   "y": 0,
+   "z": 46.56,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Car_06",
+   "x": -54.34,
+   "y": 0,
+   "z": 23.77,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Car_06",
+   "x": -54.84,
+   "y": 0,
+   "z": 26.78,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Car_06",
+   "x": -54.89,
+   "y": 0,
+   "z": 29.98,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Car_06",
+   "x": -55.01,
+   "y": 0,
+   "z": 33.23,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "traffic_light_03",
+   "x": -65.22,
+   "y": 0,
+   "z": 18.31,
+   "yaw": 315,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Billboard_01",
+   "x": -45.19,
+   "y": 0,
+   "z": 28.78,
+   "yaw": 285,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Billboard_02",
+   "x": -62.47,
+   "y": 0,
+   "z": 34.96,
+   "yaw": 45,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Bush_06",
+   "x": -49.85,
+   "y": 0,
+   "z": 24.24,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Bush_06",
+   "x": -50.67,
+   "y": 0,
+   "z": 27.83,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Bush_06",
+   "x": -50.27,
+   "y": 0,
+   "z": 30.71,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Bush_06",
+   "x": -50.95,
+   "y": 0,
+   "z": 34.58,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Bush_06",
+   "x": -53.65,
+   "y": 0,
+   "z": 36.15,
+   "yaw": 165,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "road_022",
+   "x": -53.64,
+   "y": 0,
+   "z": 9.42,
+   "yaw": 0,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Eco_Building_Tower",
+   "x": -65.88,
+   "y": 0,
+   "z": 9.23,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Eco_Building_Grid",
+   "x": -99.55,
+   "y": 0,
+   "z": 62.95,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Eco_Building_Slope",
+   "x": -69.16,
+   "y": 0,
+   "z": 86.9,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Eco_Building_Terrace",
+   "x": -40.68,
+   "y": 0,
+   "z": 84.87,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Eco_Building_Block",
+   "x": -25.59,
+   "y": 0,
+   "z": 13.61,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "traffic_light_01",
+   "x": -47.46,
+   "y": 0,
+   "z": 12.79,
+   "yaw": 180,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "traffic_light_01",
+   "x": -48.18,
+   "y": 0,
+   "z": 20.12,
+   "yaw": 75,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -83.46,
+   "y": 0,
+   "z": 49.32,
+   "yaw": 150.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -82.65,
+   "y": 0,
+   "z": 47.94,
+   "yaw": 149.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -81.83,
+   "y": 0,
+   "z": 46.57,
+   "yaw": 149.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -81.01,
+   "y": 0,
+   "z": 45.2,
+   "yaw": 148.9,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -80.18,
+   "y": 0,
+   "z": 43.83,
+   "yaw": 148.9,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -79.36,
+   "y": 0,
+   "z": 42.46,
+   "yaw": 149,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -78.53,
+   "y": 0,
+   "z": 41.08,
+   "yaw": 149,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -77.72,
+   "y": 0,
+   "z": 39.71,
+   "yaw": 149.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -76.9,
+   "y": 0,
+   "z": 38.33,
+   "yaw": 149.5,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -76.09,
+   "y": 0,
+   "z": 36.95,
+   "yaw": 149.9,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -75.29,
+   "y": 0,
+   "z": 35.57,
+   "yaw": 149.9,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -74.49,
+   "y": 0,
+   "z": 34.18,
+   "yaw": 150.5,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -73.71,
+   "y": 0,
+   "z": 32.79,
+   "yaw": 151.3,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -72.94,
+   "y": 0,
+   "z": 31.38,
+   "yaw": 151.3,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -72.19,
+   "y": 0,
+   "z": 29.97,
+   "yaw": 152.3,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -71.46,
+   "y": 0,
+   "z": 28.55,
+   "yaw": 153.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -70.75,
+   "y": 0,
+   "z": 27.11,
+   "yaw": 155.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -70.1,
+   "y": 0,
+   "z": 25.65,
+   "yaw": 158.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -69.54,
+   "y": 0,
+   "z": 24.15,
+   "yaw": 163.5,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -69.18,
+   "y": 0,
+   "z": 22.6,
+   "yaw": 171.3,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -69.2,
+   "y": 0,
+   "z": 21,
+   "yaw": 188.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -69.66,
+   "y": 0,
+   "z": 19.48,
+   "yaw": 205.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -70.57,
+   "y": 0,
+   "z": 18.18,
+   "yaw": 223.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -71.85,
+   "y": 0,
+   "z": 17.25,
+   "yaw": 241.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -73.39,
+   "y": 0,
+   "z": 16.84,
+   "yaw": 270.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -74.96,
+   "y": 0,
+   "z": 17.05,
+   "yaw": 290.3,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -76.34,
+   "y": 0,
+   "z": 17.84,
+   "yaw": 310.4,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -77.43,
+   "y": 0,
+   "z": 19,
+   "yaw": 324.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -78.35,
+   "y": 0,
+   "z": 20.31,
+   "yaw": 327.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -79.2,
+   "y": 0,
+   "z": 21.67,
+   "yaw": 329.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -80.01,
+   "y": 0,
+   "z": 23.05,
+   "yaw": 330.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -80.78,
+   "y": 0,
+   "z": 24.45,
+   "yaw": 332,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -81.54,
+   "y": 0,
+   "z": 25.86,
+   "yaw": 332,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -82.26,
+   "y": 0,
+   "z": 27.29,
+   "yaw": 333.1,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -82.97,
+   "y": 0,
+   "z": 28.72,
+   "yaw": 334,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -83.67,
+   "y": 0,
+   "z": 30.16,
+   "yaw": 334.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -84.35,
+   "y": 0,
+   "z": 31.61,
+   "yaw": 334.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -85.01,
+   "y": 0,
+   "z": 33.07,
+   "yaw": 335.7,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -85.65,
+   "y": 0,
+   "z": 34.53,
+   "yaw": 336.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -86.27,
+   "y": 0,
+   "z": 36.01,
+   "yaw": 337.6,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -86.88,
+   "y": 0,
+   "z": 37.49,
+   "yaw": 338.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -87.45,
+   "y": 0,
+   "z": 38.98,
+   "yaw": 340.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -87.99,
+   "y": 0,
+   "z": 40.49,
+   "yaw": 342.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -88.46,
+   "y": 0,
+   "z": 42.02,
+   "yaw": 345.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -88.79,
+   "y": 0,
+   "z": 43.58,
+   "yaw": 350.9,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -88.76,
+   "y": 0,
+   "z": 45.17,
+   "yaw": 7.7,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -88.2,
+   "y": 0,
+   "z": 46.66,
+   "yaw": 34.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -87.15,
+   "y": 0,
+   "z": 47.85,
+   "yaw": 48.7,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -85.83,
+   "y": 0,
+   "z": 48.76,
+   "yaw": 59.8,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  },
+  {
+   "prefab": "Fence",
+   "x": -84.45,
+   "y": 0,
+   "z": 49.56,
+   "yaw": 58.2,
+   "pitch": 0,
+   "roll": 0,
+   "scale": 1,
+   "bend": 0,
+   "bendDir": 0,
+   "bendAxis": "height"
+  }
+ ],
+ "splines": [
+  {
+   "kind": "road",
+   "width": 6,
+   "closed": false,
+   "points": [
+    {
+     "x": -75.92,
+     "z": 46.34
+    },
+    {
+     "x": -72.33,
+     "z": 39.66
+    },
+    {
+     "x": -67.23,
+     "z": 29.78
+    },
+    {
+     "x": -61.12,
+     "z": 20.62
+    },
+    {
+     "x": -54.49,
+     "z": 16.09
+    },
+    {
+     "x": -45.95,
+     "z": 18
+    },
+    {
+     "x": -35.75,
+     "z": 24.02
+    },
+    {
+     "x": -26.82,
+     "z": 31.82
+    },
+    {
+     "x": -22.09,
+     "z": 39.09
+    },
+    {
+     "x": -23.18,
+     "z": 46.04
+    },
+    {
+     "x": -28.23,
+     "z": 53.62
+    },
+    {
+     "x": -35.03,
+     "z": 60.65
+    },
+    {
+     "x": -41.35,
+     "z": 65.93
+    },
+    {
+     "x": -47.05,
+     "z": 69.04
+    },
+    {
+     "x": -53.14,
+     "z": 70.66
+    },
+    {
+     "x": -59.23,
+     "z": 71.21
+    },
+    {
+     "x": -64.9,
+     "z": 71.1
+    },
+    {
+     "x": -70.62,
+     "z": 70.36
+    },
+    {
+     "x": -76.42,
+     "z": 68.78
+    },
+    {
+     "x": -81.22,
+     "z": 66.49
+    },
+    {
+     "x": -83.95,
+     "z": 63.58
+    },
+    {
+     "x": -83.57,
+     "z": 59.4
+    },
+    {
+     "x": -80.91,
+     "z": 54.12
+    },
+    {
+     "x": -77.66,
+     "z": 49.08
+    },
+    {
+     "x": -75.5,
+     "z": 45.61
+    }
+   ]
+  },
+  {
+   "kind": "walk",
+   "width": 3,
+   "closed": false,
+   "points": [
+    {
+     "x": -73.86,
+     "z": 65.36
+    },
+    {
+     "x": -69.43,
+     "z": 65.95
+    },
+    {
+     "x": -63.07,
+     "z": 66.91
+    },
+    {
+     "x": -55.98,
+     "z": 67.11
+    },
+    {
+     "x": -49.38,
+     "z": 65.36
+    },
+    {
+     "x": -42.26,
+     "z": 60.81
+    },
+    {
+     "x": -34.43,
+     "z": 54.26
+    },
+    {
+     "x": -28.26,
+     "z": 47.06
+    },
+    {
+     "x": -26.14,
+     "z": 40.55
+    },
+    {
+     "x": -29.91,
+     "z": 33.91
+    },
+    {
+     "x": -37.91,
+     "z": 26.82
+    },
+    {
+     "x": -47.2,
+     "z": 21.36
+    },
+    {
+     "x": -54.87,
+     "z": 19.6
+    },
+    {
+     "x": -60.41,
+     "z": 23.32
+    },
+    {
+     "x": -65.3,
+     "z": 31
+    },
+    {
+     "x": -69.55,
+     "z": 39.79
+    },
+    {
+     "x": -73.18,
+     "z": 46.86
+    },
+    {
+     "x": -76.36,
+     "z": 51.69
+    },
+    {
+     "x": -79.01,
+     "z": 55.72
+    },
+    {
+     "x": -80.84,
+     "z": 59.02
+    },
+    {
+     "x": -81.52,
+     "z": 61.65
+    },
+    {
+     "x": -80.42,
+     "z": 63.45
+    },
+    {
+     "x": -77.89,
+     "z": 64.45
+    },
+    {
+     "x": -75.1,
+     "z": 64.99
+    },
+    {
+     "x": -73.22,
+     "z": 65.41
+    }
+   ]
+  }
+ ],
+ "editor": {
+  "splines": [
+   {
+    "k": "road",
+    "pts": [
+     [
+      -75.92019179042573,
+      -46.344713513214344
+     ],
+     [
+      -54.49108824614439,
+      -16.089440947866656
+     ],
+     [
+      -22.09333089156486,
+      -39.08877203551264
+     ],
+     [
+      -41.35471923675608,
+      -65.92816505939214
+     ],
+     [
+      -64.89946267666234,
+      -71.10000891722666
+     ],
+     [
+      -83.94640696518063,
+      -63.57615968022929
+     ],
+     [
+      -75.49656501114379,
+      -45.60745444530686
+     ]
+    ],
+    "w": 6,
+    "s": 0,
+    "closed": false
+   },
+   {
+    "k": "walk",
+    "pts": [
+     [
+      -73.86368406029278,
+      -65.36450512152317
+     ],
+     [
+      -49.37603692583857,
+      -65.3633634596976
+     ],
+     [
+      -26.135113823225936,
+      -40.54656270503218
+     ],
+     [
+      -54.86927039767133,
+      -19.60337819159912
+     ],
+     [
+      -73.17890319047709,
+      -46.855941377915336
+     ],
+     [
+      -81.52101264671288,
+      -61.65146881466016
+     ],
+     [
+      -73.2187913318998,
+      -65.40854097232214
+     ]
+    ],
+    "w": 3,
+    "s": 0,
+    "closed": false
+   },
+   {
+    "k": "fence",
+    "pts": [
+     [
+      -83.85255949059658,
+      -50.021588093428065
+     ],
+     [
+      -69.29465838642133,
+      -23.316896630285214
+     ],
+     [
+      -76.70562242662882,
+      -18.146868390622476
+     ],
+     [
+      -88.66807952881123,
+      -42.80366246212421
+     ],
+     [
+      -83.8549394250291,
+      -50.06451191827107
+     ]
+    ],
+    "w": 0.3,
+    "s": 1.6,
+    "closed": false
+   }
+  ],
+  "objs": [
+   {
+    "t": "Fountain",
+    "x": -54.60506645948177,
+    "z": -46.55685879336548,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Car_06",
+    "x": -54.337755719149925,
+    "z": -23.770466590806066,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Car_06",
+    "x": -54.83855703804481,
+    "z": -26.781237400691012,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Car_06",
+    "x": -54.88836914687835,
+    "z": -29.982751416398322,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Car_06",
+    "x": -55.006515569661694,
+    "z": -33.23474165501533,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "traffic_light_03",
+    "x": -65.2246886005341,
+    "z": -18.312321358053822,
+    "y": 0,
+    "rot": 3.9269908169872423,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Billboard_01",
+    "x": -45.19184276535506,
+    "z": -28.784293732655627,
+    "y": 0,
+    "rot": 4.4505895925855405,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Billboard_02",
+    "x": -62.46755117321368,
+    "z": -34.95972670294446,
+    "y": 0,
+    "rot": 2.356194490192345,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Bush_06",
+    "x": -49.84542028769718,
+    "z": -24.24105011769733,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Bush_06",
+    "x": -50.67195561354137,
+    "z": -27.82672540540748,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Bush_06",
+    "x": -50.27213208808956,
+    "z": -30.71456295922833,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Bush_06",
+    "x": -50.946984621840606,
+    "z": -34.584133496638486,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Bush_06",
+    "x": -53.65337874120479,
+    "z": -36.14730345244552,
+    "y": 0,
+    "rot": 0.2617993877991494,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "road_022",
+    "x": -53.637481499296484,
+    "z": -9.42016975782071,
+    "y": 0,
+    "rot": 3.1415926535897936,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Eco_Building_Tower",
+    "x": -65.8764253860466,
+    "z": -9.230389567383554,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Eco_Building_Grid",
+    "x": -99.54785256603813,
+    "z": -62.95375460603058,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Eco_Building_Slope",
+    "x": -69.15607829439577,
+    "z": -86.90231604132921,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Eco_Building_Terrace",
+    "x": -40.679733745734964,
+    "z": -84.87234116257504,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "Eco_Building_Block",
+    "x": -25.587958972491293,
+    "z": -13.607450723392892,
+    "y": 0,
+    "rot": 0,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "traffic_light_01",
+    "x": -47.459427627268745,
+    "z": -12.786175100200833,
+    "y": 0,
+    "rot": 6.2831853071795845,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   },
+   {
+    "t": "traffic_light_01",
+    "x": -48.175795158198795,
+    "z": -20.121373191303057,
+    "y": 0,
+    "rot": 1.8325957145940457,
+    "pt": 0,
+    "rl": 0,
+    "sc": 1,
+    "bend": 0,
+    "bd": 0,
+    "bm": "h"
+   }
+  ],
+  "tiles": [
+   {
+    "x": 0,
+    "z": 0
+   }
+  ]
+ }
+}
