@@ -84,12 +84,14 @@
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Scripts\StaminaManager.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerGroundedState.cs" />
+    <Compile Include="Assets\Scripts\MachineFountain.cs" />
     <Compile Include="Assets\Scripts\NPCSpawner.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\PlayerBaseState.cs" />
     <Compile Include="Assets\TutorialInfo\Readme.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
+    <Compile Include="Assets\EKstudio\LowPoly Factory Machine Pack Demo\Scripts\OpenLinkOnButtonClick.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerFallState.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerJumpingState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Resources\MapLoader.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerSlidingState.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Assets\Scripts\Stall.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\CookieSpawner.cs" />
+    <Compile Include="Assets\Resources\MapData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerCrouchingState.cs" />
