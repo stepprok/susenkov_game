@@ -1,5 +1,8 @@
 
-# Stažení
+# Stažení source code
+
+* **Hlavní herní repozitář:** [susenkov_game](https://github.com/stepprok/susenkov_game)
+* **Vývojářský repozitář (zdrojáky/skripty):** [susenkov_devprogram](https://github.com/stepprok/susenkov_devprogram)
 
 ## Požadavky
 * [Unity](https://unity.com/)
