@@ -138,14 +138,10 @@ public class NPCTrader : MonoBehaviour
         float distance = Vector3.Distance(playerTransform.position, transform.position);
         if (distance <= interactDistance)
         {
-            if (ShopManager.Instance != null)
-            {
+            if (TraderUI.Instance != null)
+                TraderUI.Instance.Open(this, generatedOffers);
+            else if (ShopManager.Instance != null)
                 ShopManager.Instance.OpenShop(this, generatedOffers);
-            }
-        }
-        else
-        {
-            Debug.Log("Jsi příliš daleko od NPC!");
         }
     }
 

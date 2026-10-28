@@ -15,6 +15,10 @@ public class InventoryManager : MonoBehaviour
     [Header("Finance")]
     public float money = 0.0f; // Aktuální stav peněz hráče
 
+    [Header("Sušenky")]
+    [Tooltip("Všechny názvy, které se počítají jako sušenka (nezáleží na velikosti písmen). HUD i obchodník používají tento seznam.")]
+    public List<string> cookieNames = new List<string> { "Cookies", "Cookie", "Sušenka", "Sušenky" };
+
     [Header("Seznam položek")]
     public List<string> items = new List<string>();
 
@@ -103,6 +107,52 @@ public class InventoryManager : MonoBehaviour
             if (item == itemName) count++;
         }
         return count;
+    }
+
+    // ------------------------------------------------------------------
+    // Sušenky (jedno místo, které rozhoduje, co je sušenka)
+    // ------------------------------------------------------------------
+
+    public bool IsCookie(string item)
+    {
+        if (string.IsNullOrEmpty(item)) return false;
+        string trimmed = item.Trim();
+        foreach (string name in cookieNames)
+        {
+            if (!string.IsNullOrEmpty(name) &&
+                string.Equals(name.Trim(), trimmed, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
+    }
+
+    public int CountCookies()
+    {
+        int count = 0;
+        foreach (string item in items)
+            if (IsCookie(item)) count++;
+        return count;
+    }
+
+    public bool RemoveCookies(int amount)
+    {
+        if (CountCookies() < amount) return false;
+
+        int removed = 0;
+        for (int i = items.Count - 1; i >= 0 && removed < amount; i--)
+        {
+            if (IsCookie(items[i]))
+            {
+                items.RemoveAt(i);
+                removed++;
+            }
+        }
+
+        if (selectedIndex >= items.Count && items.Count > 0)
+            selectedIndex = items.Count - 1;
+
+        UpdateUI();
+        return true;
     }
 
     public bool RemoveItems(string itemName, int amount)

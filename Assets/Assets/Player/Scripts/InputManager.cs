@@ -32,7 +32,7 @@ namespace EasyPeasyFirstPersonController
 #if ENABLE_INPUT_SYSTEM
                 if (Mouse.current == null) return Vector2.zero;
                 // Multiply by a small delta factor to match the feeling of the old Input.GetAxis
-                return Mouse.current.delta.ReadValue() * 0.05f; 
+                return Mouse.current.delta.ReadValue() * 0.05f;
 #else
                 return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 #endif
@@ -55,6 +55,10 @@ namespace EasyPeasyFirstPersonController
         {
             get
             {
+                // No stamina left -> the controller sees "sprint not pressed"
+                if (StaminaSystem.Instance != null && !StaminaSystem.Instance.CanSprint)
+                    return false;
+
 #if ENABLE_INPUT_SYSTEM
                 return Keyboard.current != null && Keyboard.current.leftShiftKey.isPressed;
 #else
