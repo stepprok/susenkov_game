@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Assets\Player\Scripts\Editor\InputManagerEditor.cs" />
+    <Compile Include="Assets\Editor\MapLoaderEditor.cs" />
     <Compile Include="Assets\TutorialInfo\Editor\ReadmeEditor.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -79,10 +79,12 @@
     <Compile Include="Assets\Assets\Player\Scripts\IInputManager.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerLedgeGrabState.cs" />
+    <Compile Include="Assets\Scripts\weathersystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Scripts\StaminaManager.cs" />
+    <Compile Include="Assets\MapNavMeshData.cs" />
     <Compile Include="Assets\Assets\Player\Scripts\States\PlayerGroundedState.cs" />
     <Compile Include="Assets\Scripts\MachineFountain.cs" />
     <Compile Include="Assets\Scripts\NPCSpawner.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Assets\Scripts\HelpScreenUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\ClockSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Stall.cs" />

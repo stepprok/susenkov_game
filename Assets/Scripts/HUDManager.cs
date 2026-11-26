@@ -15,6 +15,12 @@ public class HUDManager : MonoBehaviour
     [Header("Icons (drag your sprites here)")]
     public Sprite cookieIcon;
     public Sprite staminaIcon;
+    public Sprite clockIcon; // optional, leave empty to hide the icon
+
+    [Header("Clock")]
+    public bool showClock = true;
+    public bool showDay = true;
+    public string dayLabel = "Day";
 
     [Header("Data")]
     public string helpModifierLabel = "CTRL";
@@ -31,7 +37,9 @@ public class HUDManager : MonoBehaviour
     public Color staminaLowColor = new Color(0.9f, 0.25f, 0.2f);
     [Range(0f, 1f)] public float lowStaminaThreshold = 0.25f;
 
-    private TextMeshProUGUI levelNameText, levelPercentText, cookieText, staminaText;
+    private TextMeshProUGUI levelNameText, levelPercentText, cookieText, staminaText, clockText, dayText;
+    private string lastClock;
+    private int lastDay = -1;
     private RectTransform levelFill, staminaFill;
     private Image staminaFillImage;
 
@@ -48,9 +56,30 @@ public class HUDManager : MonoBehaviour
         UpdateCookies();
         UpdateLevel();
         UpdateStamina();
+        UpdateClock();
     }
 
     // ---------------------------------------------------------------- Updating
+
+    private void UpdateClock()
+    {
+        if (clockText == null) return;
+        ClockSystem c = ClockSystem.Instance;
+        if (c == null) return;
+
+        string t = c.TimeString();
+        if (t != lastClock)
+        {
+            lastClock = t;
+            clockText.text = t;
+        }
+
+        if (dayText != null && c.Day != lastDay)
+        {
+            lastDay = c.Day;
+            dayText.text = dayLabel + " " + c.Day;
+        }
+    }
 
     private void UpdateCookies()
     {
@@ -127,11 +156,37 @@ public class HUDManager : MonoBehaviour
         BuildLevelProgress(root);
         BuildCookies(root);
         BuildStamina(root);
+        if (showClock) BuildClock(root);
+    }
+
+    // top-right: [icon] 08:30
+    //                   Day 1
+    private void BuildClock(RectTransform root)
+    {
+        RectTransform clock = NewRect("Clock", root);
+        Place(clock, new Vector2(1, 1), new Vector2(1, 1), new Vector2(-margin, -margin), new Vector2(300, showDay ? 100 : 70));
+
+        float textLeft = 0f;
+        if (clockIcon != null)
+        {
+            Image icon = NewImage("Icon", clock, clockIcon, Color.white);
+            Place(icon.rectTransform, new Vector2(0, 0.5f), new Vector2(0, 0.5f), Vector2.zero, new Vector2(70, 70));
+            textLeft = 80f;
+        }
+
+        clockText = NewText("Time", clock, "00:00", 56, TextAlignmentOptions.MidlineRight, FontStyles.Bold);
+        Stretch(clockText.rectTransform, new Vector2(0, 1), new Vector2(1, 1), new Vector2(textLeft, showDay ? -66 : -70), Vector2.zero);
+
+        if (showDay)
+        {
+            dayText = NewText("Day", clock, dayLabel + " 1", 28, TextAlignmentOptions.MidlineRight);
+            Stretch(dayText.rectTransform, new Vector2(0, 0), new Vector2(1, 0), new Vector2(textLeft, 0), new Vector2(0, 34));
+        }
     }
 
     private void BuildHelpHint(RectTransform root)
     {
-      
+
     }
 
     private void BuildLevelProgress(RectTransform root)

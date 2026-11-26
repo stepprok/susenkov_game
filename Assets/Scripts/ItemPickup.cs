@@ -4,15 +4,16 @@ public class ItemPickup : MonoBehaviour
 {
     public string itemName = "Cookies";
     public float pickupDistance = 3.0f; // Maximální vzdálenost pro sebrání
-    private Transform playerTransform;
+
+    // Hráč se hledá jen JEDNOU pro všechny sušenky (dřív to dělala každá zvlášť)
+    private static Transform playerTransform;
 
     private void Start()
     {
-        // Najde hráče podle Tagu "Player"
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (playerTransform == null)
         {
-            playerTransform = player.transform;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null) playerTransform = player.transform;
         }
     }
 
@@ -20,10 +21,10 @@ public class ItemPickup : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // Kontrola vzdálenosti mezi hráčem a sušenkou
-        float distance = Vector3.Distance(playerTransform.position, transform.position);
+        // sqrMagnitude = bez odmocniny, rychlejší
+        float sqrDist = (playerTransform.position - transform.position).sqrMagnitude;
 
-        if (distance <= pickupDistance)
+        if (sqrDist <= pickupDistance * pickupDistance)
         {
             if (InventoryManager.Instance != null)
             {
