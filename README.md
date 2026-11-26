@@ -102,12 +102,12 @@ Zvukový design obsahuje:
 ## Rozsah projektu
 Plánovaný rozsah:
 
-* **12** hlavních oblastí
-* **30+** tajných místností
-* **4** druhy sušenek
-* **~30** NPC
-* **20–30** vedlejších questů
-* **20+** achievementů
+* **4** hlavních oblastí
+* **idk+** tajných místností
+* **1** druhy sušenek
+* **~dle spawnu** NPC
+* **idk** vedlejších questů
+* **idk** achievementů
 * systém postupného vylepšování postavy
 
 ---
