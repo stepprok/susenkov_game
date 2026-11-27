@@ -118,27 +118,193 @@ public class MapLoader : MonoBehaviour
             placed.Add(go);
         }
 
-        // 4) splines (roads / rivers)
-        foreach (var s in data.splines)
-        {
-            if (s.kind != "road" && s.kind != "river") continue;
-            var go = new GameObject(s.kind);
-            go.transform.SetParent(transform);
-            var lr = go.AddComponent<LineRenderer>();
-            lr.useWorldSpace = true;
-            lr.alignment = LineAlignment.TransformZ;
-            lr.transform.rotation = Quaternion.Euler(90, 0, 0);
-            lr.widthMultiplier = s.width;
-            lr.loop = s.closed;
-            lr.numCornerVertices = 4;
-            if (roadMaterial != null) lr.sharedMaterial = roadMaterial;
-            lr.positionCount = s.points.Length;
-            for (int i = 0; i < s.points.Length; i++)
-                lr.SetPosition(i, new Vector3(s.points[i].x, GroundY(s.points[i].x, s.points[i].z) + 0.05f, s.points[i].z));
-        }
+        // 4) splines (roads / sidewalks / rivers) - draped over the ground, with lane markings and damage
+        if (data.splines != null)
+            foreach (var sp in data.splines) BuildSpline(sp);
 
         return placed;
     }
+
+    // ---------- roads ----------
+    struct RoadSpec { public Color col; public int lanes; public string mk; public int dmg; public float y; }
+    static readonly Dictionary<string, RoadSpec> Roads = MakeRoads();
+    static Dictionary<string, RoadSpec> MakeRoads()
+    {
+        var d = new Dictionary<string, RoadSpec>();
+        void R(string n, string hex, string mk, int lanes, int dmg, float y)
+        {
+            ColorUtility.TryParseHtmlString(hex, out var c);
+            d[n] = new RoadSpec { col = c, mk = mk, lanes = lanes, dmg = dmg, y = y };
+        }
+        R("road2", "#3a3d42", "dash", 2, 0, .05f);   R("road2s", "#3a3d42", "solid", 2, 0, .05f);
+        R("road2d", "#3a3d42", "double", 2, 0, .05f); R("road2b", "#4a4a48", "dash", 2, 1, .05f);
+        R("road2p", "#403f3c", "dash", 2, 2, .05f);   R("road4", "#3a3d42", "dash", 4, 0, .05f);
+        R("road4s", "#3a3d42", "median", 4, 0, .05f); R("road1", "#3a3d42", "edge", 1, 0, .05f);
+        R("dirt", "#8a6d46", "none", 0, 0, .05f);     R("road", "#3a3d42", "none", 0, 0, .05f);
+        R("walk", "#a7abb0", "none", 0, 0, .07f);     R("river", "#3d8fd1", "none", 0, 0, .04f);
+        return d;
+    }
+
+    Material defaultMat;
+    readonly Dictionary<string, Material> roadMatCache = new Dictionary<string, Material>();
+    Material RoadMat(Color col, bool body)
+    {
+        if (body && roadMaterial != null) return roadMaterial;
+        string key = ColorUtility.ToHtmlStringRGB(col) + (roadMaterial != null);
+        if (roadMatCache.TryGetValue(key, out var m) && m != null) return m;
+        Material bas = roadMaterial != null ? roadMaterial : fallbackMaterial;
+        if (bas == null)
+        {
+            if (defaultMat == null)
+            {
+                var t = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                defaultMat = t.GetComponent<Renderer>().sharedMaterial;
+                if (Application.isPlaying) Destroy(t); else DestroyImmediate(t);
+            }
+            bas = defaultMat;
+        }
+        m = new Material(bas) { color = col };
+        m.mainTexture = null;
+        roadMatCache[key] = m;
+        return m;
+    }
+
+    static List<Vector2> Densify(List<Vector2> pts, bool closed, float step)
+    {
+        var r = new List<Vector2>();
+        int n = pts.Count;
+        int segs = closed ? n : n - 1;
+        for (int i = 0; i < segs; i++)
+        {
+            var a = pts[i]; var b = pts[(i + 1) % n];
+            int k = Mathf.Max(1, Mathf.CeilToInt((b - a).magnitude / step));
+            for (int j = 0; j < k; j++) r.Add(Vector2.Lerp(a, b, j / (float)k));
+        }
+        r.Add(closed ? r[0] : pts[n - 1]);
+        return r;
+    }
+
+    static Vector2 Right(List<Vector2> p, int i)
+    {
+        var a = p[Mathf.Max(0, i - 1)]; var b = p[Mathf.Min(p.Count - 1, i + 1)];
+        var d = (b - a); if (d.sqrMagnitude < 1e-6f) d = Vector2.up; d.Normalize();
+        return new Vector2(d.y, -d.x); // Unity: right of travel direction
+    }
+
+    static List<Vector2> Offs(List<Vector2> p, float o)
+    {
+        var r = new List<Vector2>(p.Count);
+        for (int i = 0; i < p.Count; i++) r.Add(p[i] + Right(p, i) * o);
+        return r;
+    }
+
+    static List<List<Vector2>> Dashes(List<Vector2> pl, float len, float gap)
+    {
+        var outp = new List<List<Vector2>>(); var cur = new List<Vector2> { pl[0] };
+        bool on = true; float left = len;
+        for (int i = 0; i < pl.Count - 1; i++)
+        {
+            var a = pl[i]; var b = pl[i + 1]; float L = Vector2.Distance(a, b), pos = 0;
+            while (L - pos > left)
+            {
+                pos += left; var q = Vector2.Lerp(a, b, pos / L);
+                if (on) { cur.Add(q); outp.Add(cur); cur = new List<Vector2>(); }
+                else cur = new List<Vector2> { q };
+                on = !on; left = on ? len : gap;
+            }
+            left -= L - pos; if (on) cur.Add(b);
+        }
+        if (on && cur.Count > 1) outp.Add(cur);
+        outp.RemoveAll(c => c.Count < 2);
+        return outp;
+    }
+
+    void Ribbon(Transform parent, List<Vector2> pl, float w, float yo, Color col, string name, bool body)
+    {
+        if (pl.Count < 2) return;
+        var v = new Vector3[pl.Count * 2]; var tri = new List<int>(); var uv = new Vector2[v.Length]; float acc = 0;
+        for (int i = 0; i < pl.Count; i++)
+        {
+            var r = Right(pl, i) * (w / 2f);
+            var L = pl[i] - r; var R = pl[i] + r;
+            v[i * 2] = new Vector3(L.x, GroundY(L.x, L.y) + yo, L.y);
+            v[i * 2 + 1] = new Vector3(R.x, GroundY(R.x, R.y) + yo, R.y);
+            if (i > 0) acc += Vector2.Distance(pl[i], pl[i - 1]);
+            uv[i * 2] = new Vector2(0, acc / 10f); uv[i * 2 + 1] = new Vector2(1, acc / 10f);
+            if (i > 0) { int a = i * 2 - 2; tri.Add(a); tri.Add(a + 2); tri.Add(a + 1); tri.Add(a + 1); tri.Add(a + 2); tri.Add(a + 3); }
+        }
+        var mesh = new Mesh { name = name, indexFormat = UnityEngine.Rendering.IndexFormat.UInt32 };
+        mesh.vertices = v; mesh.uv = uv; mesh.triangles = tri.ToArray(); mesh.RecalculateNormals(); mesh.RecalculateBounds();
+        var go = new GameObject(name); go.transform.SetParent(parent, false);
+        go.AddComponent<MeshFilter>().sharedMesh = mesh;
+        go.AddComponent<MeshRenderer>().sharedMaterial = RoadMat(col, body);
+    }
+
+    void BuildSpline(MapSpline s)
+    {
+        if (s.points == null || s.points.Length < 2 || !Roads.TryGetValue(s.kind, out var k)) return;
+        var root = new GameObject(s.kind); root.transform.SetParent(transform, false);
+        var raw = new List<Vector2>(); foreach (var p in s.points) raw.Add(new Vector2(p.x, p.z));
+        var c = Densify(raw, s.closed, 2f);
+        float W = s.width, Y = k.y;
+        Ribbon(root.transform, c, W, Y, k.col, "Surface", true);
+
+        Color wc, wh; ColorUtility.TryParseHtmlString("#e8e0b0", out wc); ColorUtility.TryParseHtmlString("#f2f2f2", out wh);
+        float my = Y + .03f;
+        void Line(List<Vector2> p, float w, Color col) => Ribbon(root.transform, p, w, my, col, "Marking", false);
+        void Dash(List<Vector2> p, Color col, float w, float len = 3f, float gap = 3f) { foreach (var d in Dashes(p, len, gap)) Line(d, w, col); }
+
+        if (k.mk == "edge" || k.lanes >= 2) { Line(Offs(c, W / 2f - .35f), .15f, wh); Line(Offs(c, -(W / 2f - .35f)), .15f, wh); }
+        if (k.mk == "dash")
+        {
+            if (k.lanes == 2) Dash(c, wc, .15f);
+            else for (int i = 1; i < k.lanes; i++)
+            {
+                float o = -W / 2f + W * i / k.lanes;
+                if (i == k.lanes / 2) { Line(Offs(c, .15f), .12f, wc); Line(Offs(c, -.15f), .12f, wc); }
+                else Dash(Offs(c, o), wh, .14f, 3f, 4f);
+            }
+        }
+        if (k.mk == "solid") Line(c, .18f, wc);
+        if (k.mk == "double") { Line(Offs(c, .15f), .12f, wc); Line(Offs(c, -.15f), .12f, wc); }
+        if (k.mk == "median")
+        {
+            ColorUtility.TryParseHtmlString("#6f7a6a", out var gr);
+            Line(c, 1f, gr); Line(Offs(c, .6f), .1f, wc); Line(Offs(c, -.6f), .1f, wc);
+            Dash(Offs(c, -W / 4f), wh, .14f, 3f, 4f); Dash(Offs(c, W / 4f), wh, .14f, 3f, 4f);
+        }
+        if (k.dmg > 0) Damage(root.transform, c, W, Y, k.dmg);
+    }
+
+    // potholes (dmg 2) / cracks + patches (dmg 1)
+    void Damage(Transform parent, List<Vector2> c, float W, float Y, int dmg)
+    {
+        var rnd = new System.Random(c.Count * 31 + (int)(W * 10));
+        int n = dmg == 2 ? Mathf.FloorToInt(c.Count * .9f) : Mathf.FloorToInt(c.Count * .5f);
+        Color dark; ColorUtility.TryParseHtmlString(dmg == 2 ? "#1e1d1b" : "#2a2926", out dark);
+        Color crack; ColorUtility.TryParseHtmlString("#151515", out crack);
+        for (int i = 0; i < n; i++)
+        {
+            int j = rnd.Next(0, c.Count); var pos = c[j] + Right(c, j) * (((float)rnd.NextDouble() - .5f) * (W - 1f));
+            float r = dmg == 2 ? .5f + (float)rnd.NextDouble() * .9f : .3f + (float)rnd.NextDouble() * .5f;
+            var g = GameObject.CreatePrimitive(PrimitiveType.Cylinder); g.name = dmg == 2 ? "Pothole" : "Patch";
+            g.transform.SetParent(parent, false);
+            g.transform.position = new Vector3(pos.x, GroundY(pos.x, pos.y) + Y + .06f, pos.y);
+            g.transform.localScale = new Vector3(r * 2f, .01f, r * 2f);
+            var col = g.GetComponent<Collider>(); if (Application.isPlaying) Destroy(col); else DestroyImmediate(col);
+            g.GetComponent<Renderer>().sharedMaterial = RoadMat(dark, false);
+            if (dmg == 1)
+            {
+                var cr = GameObject.CreatePrimitive(PrimitiveType.Cube); cr.name = "Crack"; cr.transform.SetParent(parent, false);
+                cr.transform.position = new Vector3(pos.x, g.transform.position.y + .01f, pos.y);
+                cr.transform.rotation = Quaternion.Euler(0, (float)rnd.NextDouble() * 180f, 0);
+                cr.transform.localScale = new Vector3(r * 3f, .01f, .06f);
+                var cc = cr.GetComponent<Collider>(); if (Application.isPlaying) Destroy(cc); else DestroyImmediate(cc);
+                cr.GetComponent<Renderer>().sharedMaterial = RoadMat(crack, false);
+            }
+        }
+    }
+
 
     GameObject SpawnPrefab(GameObject prefab)
     {
