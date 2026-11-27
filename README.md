@@ -4,6 +4,14 @@
 
 Hráč se pohybuje po městě, sbírá roztroušené sušenky, plní úkoly pro místní obyvatele a za získané odměny si vylepšuje svou postavu. Město funguje na principu **3D Metroidvanie** – nová vylepšení zpřístupňují dříve nedostupné části mapy.
 
+## Stažení
+
+**[Stáhnout hru v sekci Releases](https://github.com/stepprok/susenkov_game/releases)**
+
+Stáhni ZIP z přílohy vydané verze, rozbal ho a spusť soubor `.exe`.
+
+[Repozitář projektu na GitHubu](https://github.com/stepprok/susenkov_game)
+
 ## Hra
 Po útoku na továrny, kde se vyrábějí slavné Sušenkovské sušenky, se sušenky rozletěly po celém městě. Je na hráči, aby je všechny posbíral.
 
